@@ -21,7 +21,6 @@
   },
   "homepage": "https://github.com/Slyther/Examen1Vanguardia2017Q3#readme",
   "devDependencies": {
-    "babel": "^6.23.0",
     "babel-plugin-istanbul": "^4.1.4",
     "babel-preset-es2015": "^6.24.1",
     "babel-register": "^6.26.0",
