@@ -2,7 +2,7 @@ const search = require('../index.js');
 
 describe('cat to dog', () => {
   it('using []', () => {
-    expect(search('cat', 'dog', [])).toEqual(['cat', 'cot', 'cog', 'dog']);
+    expect(search('cat', 'dog', [])).toEqual(['cat', 'dat', 'dot', 'dog']);
   });
 });
 
