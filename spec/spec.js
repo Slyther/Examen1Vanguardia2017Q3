@@ -1,4 +1,4 @@
-const wordsList = require('../src/index.js');
+const search = require('../index.js');
 
 describe('cat to dog', () => {
   it('using []', () => {
