@@ -1,13 +1,13 @@
 {
   "name": "examen1vanguardia2017q3",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Kata para Examen",
   "main": "index.js",
   "scripts": {
     "lint": "eslint src spec index.js --ext .js",
     "jasmine": "jasmine",
     "lint-test": "npm run lint && npm run jasmine",
-    "test": "nyc npm run lint-test",
+    "test": "nyc npm run lint-test && nyc jasmine",
     "start": "node index.js"
   },
   "repository": {
@@ -29,10 +29,17 @@
     "eslint-plugin-import": "^2.7.0",
     "jasmine": "^2.7.0",
     "jasmine-co": "^1.2.2",
+    "jasmine-node": "^1.14.5",
     "nyc": "^11.1.0"
   },
   "nyc": {
     "all": true,
+    "check-coverage": true,
+    "per-file": true,
+    "lines": 100,
+    "statements": 100,
+    "functions": 100,
+    "branches": 100,
     "include": [
       "src/**"
     ],
