@@ -1,37 +1,36 @@
-let fs = require('fs');
+const fs = require('fs');
 
-let words = fs.readFileSync('wordlist.txt')
+const words = fs.readFileSync('wordlist.txt')
   .toString()
   .toLowerCase()
   .split('\n');
 
-let countDiffs = function (word1, word2) {
+const countDiffs = function diffs(word1, word2) {
   let count = 0;
-  for (let i = 0; i < word1.length; i = i + 1) {
-      if (word1[i] !== word2[i]) count = count + 1;
+  for (let i = 0; i < word1.length; i += 1) {
+    if (word1[i] !== word2[i]) count += 1;
   }
   return count;
-}
+};
 
-var globalFound = []
+let globalFound = [];
 
-var search = function(start, end, previousList) {
-  previousList = previousList.concat(start);
+const search = function srch(start, end, previousList) {
+  const prev = previousList.concat(start);
   globalFound = globalFound.concat(start);
-  if (start === end) return previousList;
-  var wordlist = words.filter(function(word) {
-      return word.length === end.length && countDiffs(start, word) === 1 && previousList.indexOf(word) === -1 && globalFound.indexOf(word) === -1;
-  }).filter(function(word, idx, list) {
-      return list.indexOf(word) === idx;
-  }).sort(function(word1, word2) {
-      return countDiffs(word1, end) - countDiffs(word2, end);
-  })
-  for (var i = 0; i < wordlist.length; i++) {
-      var x = search(wordlist[i], end, previousList);
-      if (x)
-          return x;
+  if (start === end) return prev;
+  const wordlist = words.filter(word => word.length === end.length && countDiffs(start, word) === 1
+    && previousList.indexOf(word) === -1 && globalFound.indexOf(word) === -1)
+    .filter((word, idx, list) => list.indexOf(word) === idx)
+    .sort((word1, word2) => countDiffs(word1, end) - countDiffs(word2, end));
+  for (let i = 0; i < wordlist.length; i += 1) {
+    const x = search(wordlist[i], end, prev);
+    if (x) {
+      return x;
+    }
   }
-}
+  return null;
+};
 
 module.exports = function wordChain(start, end) {
   return search(start, end, []);
