@@ -6,11 +6,11 @@ const words = fs.readFileSync('wordlist.txt')
   .split('\n');
 
 const countDiffs = function diffs(word1, word2) {
-  let count = 0;
+  let cnt = 0;
   for (let i = 0; i < word1.length; i += 1) {
-    if (word1[i] !== word2[i]) count += 1;
+    if (word1[i] !== word2[i]) cnt += 1;
   }
-  return count;
+  return cnt;
 };
 
 let globalFound = [];
